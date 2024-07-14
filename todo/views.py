@@ -30,8 +30,22 @@ def createTodo(request):
         form = TodoForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('todo_detail')
+            return redirect('todo_list')
     context = {
         'form': form,
     }
     return render(request, 'todo_form.html', context)
+
+
+def editTodo(request, pk):
+    todo = Todo.objects.get(id=pk)
+    form = EditTodo(instance=todo)
+    if request.method == 'POST':
+        form = EditTodo(request.POST, instance=todo)
+        if form.is_valid():
+            form.save()
+            return redirect('todo_detail', pk=todo.pk)  # Pass the pk argument here
+    context = {
+        'form': form,
+    }
+    return render(request, 'edit_todo.html', context)

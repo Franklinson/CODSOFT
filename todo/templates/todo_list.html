@@ -16,6 +16,7 @@
                     <th>Title</th>
                     <th>Status</th>
                     <th>Date Created</th>
+                    <th>Date Updated</th>
                     <th>View</th>
                     <th>Update</th>
                     <th>Delte</th>
@@ -28,8 +29,9 @@
                         <td>{{ todo.title }}</td>
                         <td>{{ todo.completed }}</td>
                         <td>{{ todo.created_at }}</td>
+                        <td>{{ todo.updated_at }}</td>
                         <td><a class= "btn btn-sm btn-primary" href="{% url 'todo_detail' todo.id %}"> View </a></td>
-                        <td><a class= "btn btn-sm btn-info" href="{}"> Update </a></td>
+                        <td><a class= "btn btn-sm btn-info" href="{% url 'todo_update' todo.id%}"> Update </a></td>
                         <td><a class= "btn btn-sm btn-danger" href="#"> Delete </a></td>
                     </tr>
 
