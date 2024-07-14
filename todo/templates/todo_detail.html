@@ -8,21 +8,19 @@
 <div class="container h-50">
     <div class="col-md-12">
         <div class="card card-body">
-
-                <div class="row">
-                    <div class="col-md-6">
                         <div class="col-md">
                             <div class="card card-body">
-                                <label for="author_information"><strong> Title </strong></label>
+                                <label for="title"><strong> Title </strong></label>
                                 {{ todo.title }}
-                                <label for="email"><strong> Description </strong></label> <br>
+                                <label for="description"><strong> Description </strong></label> <br>
                                 {{ todo.description }}
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
+                        <td><a class= "btn btn-sm btn-primary" href="{% url 'todo_list' %}"> Back </a></td>
+                        <td><a class= "btn btn-sm btn-info" href="{}"> Update </a></td>
+                        <td><a class= "btn btn-sm btn-danger" href="#"> Delete </a></td>
 </div>
+                        
 {% endblock %}

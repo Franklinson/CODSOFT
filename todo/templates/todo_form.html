@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="mb-3">
+    <label for="title" class="form-label"><strong> Title</strong></label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter your Todo Title">
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label"><strong> Description</strong></label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+  <input class="btn btn-primary btn-sm" type="submit" name="Submit">
+    {{form.errors}}
+
+  {% endblock %}
