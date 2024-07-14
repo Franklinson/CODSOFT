@@ -6,4 +6,5 @@ urlpatterns = [
     path('<int:pk>/', views.TodoDetail, name='todo_detail'),
     path('create/', views.createTodo, name='todo_create'),
     path('update/<int:pk>/', views.editTodo, name='todo_update'),
+    path('delete/<int:pk>/', views.deleteTodo, name='todo_delete'),
 ]

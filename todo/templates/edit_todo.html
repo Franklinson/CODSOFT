@@ -20,6 +20,7 @@
                     {{ form.completed }}
                 </div>
                 <div class="form-group">
+                    <a class= "btn btn-sm btn-info" href="{% url 'todo_list' %}"> Cancel </a>
                     <input class="btn btn-primary btn-sm" type="submit" name="Submit" value="Submit">
                 </div>
                 {% if form.errors %}

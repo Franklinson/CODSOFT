@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Todo
 from .forms import *
 
@@ -49,3 +49,11 @@ def editTodo(request, pk):
         'form': form,
     }
     return render(request, 'edit_todo.html', context)
+
+
+def deleteTodo(request, pk):
+    todo = get_object_or_404(Todo, pk=pk)
+    if request.method == 'POST':
+        todo.delete()
+        return redirect('todo_list')
+    return render(request, 'delete.html', {'rem': todo})
