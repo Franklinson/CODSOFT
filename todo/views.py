@@ -65,21 +65,17 @@ def deleteTodo(request, pk):
 
 
 def register(request):
-    
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            
             username = form.cleaned_data.get('username')
-            
             messages.success(request, 'Account was created successfully for ' + username)
             return redirect('login')
     else:
-        form = UserCreationForm()
-    
-    context = {'form': form,
-               }
+        form = CustomUserCreationForm()
+
+    context = {'form': form}
     return render(request, 'register.html', context)
 
 

@@ -3,7 +3,7 @@ from . import views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('/todo', views.TodoList, name='todo_list'),
+    path('todo', views.TodoList, name='todo_list'),
     path('<int:pk>/', views.TodoDetail, name='todo_detail'),
     path('create/', views.createTodo, name='todo_create'),
     path('update/<int:pk>/', views.editTodo, name='todo_update'),
