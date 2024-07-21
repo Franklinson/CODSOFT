@@ -6,7 +6,17 @@
       <a class="btn btn-outline-info btn-sm btn-block" href="{% url 'todo_create' %}">Add Todo</a>
     </div>
   </div>
-
+  <div class="row">
+    <div class="col">
+        <div class="card card-body">
+            <form method="get">
+				<p> Search for Contacts </p>
+				{{myfilter.form}}
+            <button class="btn btn-primary" type="submit">Search</button>
+          </form>
+        </div>
+    </div>
+<br>
   <div class="col-md">
     <div class="card text-center text-white bg-primary mb-3">
       <div class="card-header">

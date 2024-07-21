@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from contactbook.models import Contact, PhoneNumber
+from contactbook.filters import ContactFilter
 
 
 def TodoList(request):
@@ -16,6 +17,8 @@ def TodoList(request):
     contact = Contact.objects.get()
     phone = contact.phone_numbers.all()
     tot = contacts.count()
+    myfilter = ContactFilter(request.GET, queryset=contacts)
+    contacts = myfilter.qs
     
     context = {
         'todos': todos,
@@ -24,6 +27,7 @@ def TodoList(request):
         'contacts': contacts,
         'tot': tot,
         'phone': phone,
+        'myfilter': myfilter,
     }
     return render(request, 'todo_list.html', context)
 
