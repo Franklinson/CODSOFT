@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Contact</title>
+</head>
+<body>
+    <h1>Create New Contact</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Contact Information</legend>
+            {{ contact_form.as_p }}
+        </fieldset>
+        <fieldset>
+            <legend>Phone Numbers</legend>
+            {{ phone_form.as_p }}
+        </fieldset>
+        <fieldset>
+            <legend>Emails</legend>
+            {{ email_form.as_p }}
+        </fieldset>
+        <fieldset>
+            <legend>Addresses</legend>
+            {{ address_form.as_p }}
+        </fieldset>
+        <fieldset>
+            <legend>Social Media</legend>
+            {{ social_media_form.as_p }}
+        </fieldset>
+        <fieldset>
+            <legend>Interaction Log</legend>
+            {{ interaction_log_form.as_p }}
+        </fieldset>
+        <button type="submit">Save Contact</button>
+    </form>
+</body>
+</html>

@@ -5,17 +5,20 @@ from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from contactbook.models import Contact
 
 
 def TodoList(request):
     todos = Todo.objects.all()
     total = todos.count()
     completed = Todo.objects.filter(completed=True).count()
+    contacts = Contact.objects.all()
     
     context = {
         'todos': todos,
         'total': total,
         'completed': completed,
+        'contacts': contacts,
     }
     return render(request, 'todo_list.html', context)
 
@@ -48,7 +51,7 @@ def editTodo(request, pk):
         form = EditTodo(request.POST, instance=todo)
         if form.is_valid():
             form.save()
-            return redirect('todo_detail', pk=todo.pk)  # Pass the pk argument here
+            return redirect('todo_detail', pk=todo.pk) 
     context = {
         'form': form,
     }

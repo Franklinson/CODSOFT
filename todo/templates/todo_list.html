@@ -39,39 +39,34 @@
 
             </table>
         </div>
-        {% comment %} {% if reviewer %}
-        <strong><h3>Assigned Abstracts</h3></strong>
+        
+        <strong><h3>Contact Book</h3></strong>
         <div class="card card-body">
             <table class="table table-sm">
                 <tr>
                     <th> ID </th>
-                    <th>Title</th>
-                    <th>Status</th>
-                    <th>Presentation Type</th>
-                    <th>Track</th>
-                    <th>Date Submitted</th>
+                    <th>Fisrt Name</th>
+                    <th>Last Name</th>
+                    <th>birthday</th>
                     <th>Update</th>
                     <th>Delte</th>
                     
                 </tr>
 
-                {% for abstract in abstracts %}
+                {% for contact in contacts %}
                     <tr>
-                        <td> {{ abstract.id}} </td>
-                        <td>{{ abstract.abstract_title }}</td>
-                        <td>{{ abstract.status }}</td>
-                        <td>{{ abstract.presentation_type }}</td>
-                        <td>{{ abstract.track }}</td>
-                        <td>{{ abstract.date_created }}</td>
+                        <td> {{ contact.id}} </td>
+                        <td>{{ contact.first_name }}</td>
+                        <td>{{ contact.last_name }}</td>
+                        <td>{{ contact.birthday }}</td>
                         <td><a class= "btn btn-sm btn-info" href="{}"> Update </a></td>
-                        <td><a class= "btn btn-sm btn-danger" href="{% url 'delete_abstract' abstract.id %}"> Delete </a></td>
+                        <td><a class= "btn btn-sm btn-danger" href="{% url 'contact_delete' contact.id %}"> Delete </a></td>
                     </tr>
 
 				{% endfor %}
 
             </table>
         </div>
-        {% endif %} {% endcomment %}
     </div>
     
 </div>
