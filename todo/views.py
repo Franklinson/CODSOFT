@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from contactbook.models import Contact
+from contactbook.models import Contact, PhoneNumber
 
 
 def TodoList(request):
@@ -13,12 +13,17 @@ def TodoList(request):
     total = todos.count()
     completed = Todo.objects.filter(completed=True).count()
     contacts = Contact.objects.all()
+    contact = Contact.objects.get()
+    phone = contact.phone_numbers.all()
+    tot = contacts.count()
     
     context = {
         'todos': todos,
         'total': total,
         'completed': completed,
         'contacts': contacts,
+        'tot': tot,
+        'phone': phone,
     }
     return render(request, 'todo_list.html', context)
 
@@ -91,7 +96,7 @@ def login(request):
         
         if user is not None:
             auth_login(request, user)
-            return redirect('todo_list')
+            return redirect('home')
         
         else:
             messages.info(request, 'Username or Password is incorrect')
