@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ContactForm, PhoneNumberForm, EmailForm, AddressForm, SocialMediaForm, InteractionLogForm
+from .forms import ContactForm, PhoneNumberForm, EmailForm, AddressForm, SocialMediaForm, InteractionLogForm, PhoneNumberFormSet, EmailFormSet, AddressFormSet, SocialMediaFormSet, InteractionLogFormSet
 from .models import Contact
 
 def create_contact(request):
@@ -54,3 +54,45 @@ def deleteContact(request, pk):
         contact.delete()
         return redirect('todo_list')
     return render(request, 'contacts/delete.html', {'rem': contact})
+
+
+def edit_contact(request, pk):
+    contact = get_object_or_404(Contact, pk=pk)
+    if request.method == 'POST':
+        contact_form = ContactForm(request.POST, request.FILES, instance=contact)
+        phone_formset = PhoneNumberFormSet(request.POST, request.FILES, instance=contact, prefix='phone')
+        email_formset = EmailFormSet(request.POST, request.FILES, instance=contact, prefix='email')
+        address_formset = AddressFormSet(request.POST, request.FILES, instance=contact, prefix='address')
+        social_media_formset = SocialMediaFormSet(request.POST, request.FILES, instance=contact, prefix='social_media')
+        interaction_log_formset = InteractionLogFormSet(request.POST, request.FILES, instance=contact, prefix='interaction_log')
+
+        if contact_form.is_valid() and phone_formset.is_valid() and email_formset.is_valid() and address_formset.is_valid() and social_media_formset.is_valid() and interaction_log_formset.is_valid():
+            contact = contact_form.save()
+            phone_formset.instance = contact
+            phone_formset.save()
+            email_formset.instance = contact
+            email_formset.save()
+            address_formset.instance = contact
+            address_formset.save()
+            social_media_formset.instance = contact
+            social_media_formset.save()
+            interaction_log_formset.instance = contact
+            interaction_log_formset.save()
+            return redirect('contact_detail', pk=contact.pk)  # Replace with your success URL
+    else:
+        contact_form = ContactForm(instance=contact)
+        phone_formset = PhoneNumberFormSet(instance=contact, prefix='phone')
+        email_formset = EmailFormSet(instance=contact, prefix='email')
+        address_formset = AddressFormSet(instance=contact, prefix='address')
+        social_media_formset = SocialMediaFormSet(instance=contact, prefix='social_media')
+        interaction_log_formset = InteractionLogFormSet(instance=contact, prefix='interaction_log')
+
+    context = {
+        'contact_form': contact_form,
+        'phone_formset': phone_formset,
+        'email_formset': email_formset,
+        'address_formset': address_formset,
+        'social_media_formset': social_media_formset,
+        'interaction_log_formset': interaction_log_formset,
+    }
+    return render(request, 'contacts/edit_contact.html', context)

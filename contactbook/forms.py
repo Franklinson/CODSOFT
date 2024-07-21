@@ -1,5 +1,6 @@
 from django import forms
 from .models import Contact, PhoneNumber, Email, Address, SocialMedia, InteractionLog
+from django.forms import inlineformset_factory
 
 class ContactForm(forms.ModelForm):
     class Meta:
@@ -30,3 +31,10 @@ class InteractionLogForm(forms.ModelForm):
     class Meta:
         model = InteractionLog
         fields = ['log']
+
+
+PhoneNumberFormSet = inlineformset_factory(Contact, PhoneNumber, form=PhoneNumberForm, extra=1, can_delete=True)
+EmailFormSet = inlineformset_factory(Contact, Email, form=EmailForm, extra=1, can_delete=True)
+AddressFormSet = inlineformset_factory(Contact, Address, form=AddressForm, extra=1, can_delete=True)
+SocialMediaFormSet = inlineformset_factory(Contact, SocialMedia, form=SocialMediaForm, extra=1, can_delete=True)
+InteractionLogFormSet = inlineformset_factory(Contact, InteractionLog, form=InteractionLogForm, extra=1, can_delete=True)
