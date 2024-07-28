@@ -70,13 +70,14 @@
             </table>
         </div>
 
-        <strong><h3>Contact Book</h3></strong>
+        <strong><h3> Generated Password</h3></strong>
         <div class="card card-body">
             <table class="table table-sm">
                 <tr>
                     <th> ID </th>
                     <th>Password</th>
                     <th>Purpose</th>
+                    <th>Date Created</th>
                     <th> Delete </th>
                 </tr>
                 {% for pass in password %}
@@ -84,6 +85,7 @@
                         <td> {{ pass.id }} </td>
                         <td> {{ pass }} </td>
                         <td> {{ pass.purpose }} </td>
+                        <td> {{ pass.created_at }} </td>
                         <td><a class= "btn btn-sm btn-danger" href="{% url 'deletePassword' pass.id %}"> Delete </a></td>
                     </tr>
                 {% endfor %}
