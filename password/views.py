@@ -26,5 +26,5 @@ def deletePassword(request, pk):
     genpass = get_object_or_404(Password, pk=pk)
     if request.method == 'POST':
         Password.delete()
-        return redirect('todo_list')
-    return render(request, 'delete.html', {'rem': genpass})
+        return redirect('home')
+    return render(request, 'deletepassword.html', {'pass': genpass})

@@ -49,11 +49,12 @@ def create_contact(request):
 
 
 def deleteContact(request, pk):
+    cont = Contact.objects.all()
     contact = get_object_or_404(Contact, pk=pk)
     if request.method == 'POST':
         contact.delete()
         return redirect('todo_list')
-    return render(request, 'contacts/delete.html', {'rem': contact})
+    return render(request, 'contacts/delete.html', {'con': contact, 'cont': cont})
 
 
 def edit_contact(request, pk):
