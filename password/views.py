@@ -20,3 +20,5 @@ def password_generator_view(request):
     else:
         form = PasswordForm()
     return render(request, 'password_generator.html', {'form': form})
+
+

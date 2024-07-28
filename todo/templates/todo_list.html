@@ -69,6 +69,20 @@
 
             </table>
         </div>
+
+        <strong><h3>Contact Book</h3></strong>
+        <div class="card card-body">
+            <table class="table table-sm">
+                <tr>
+                    <th> ID </th>
+                    <th>Password</th>
+                </tr>
+                {% for pass in password %}
+                    <tr>
+                        <td> {{ pass.id }} </td>
+                        <td> {{ pass }} </td>
+                    </tr>
+                {% endfor %}
     </div>
     
 </div>

@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from contactbook.models import Contact, PhoneNumber
 from contactbook.filters import ContactFilter
+from password.models import Password
 
 
 def TodoList(request):
@@ -16,6 +17,7 @@ def TodoList(request):
     contacts = Contact.objects.all()
     contact = Contact.objects.get()
     phone = contact.phone_numbers.all()
+    password = Password.objects.all()
     tot = contacts.count()
     myfilter = ContactFilter(request.GET, queryset=contacts)
     contacts = myfilter.qs
@@ -28,6 +30,7 @@ def TodoList(request):
         'tot': tot,
         'phone': phone,
         'myfilter': myfilter,
+        'password': password,
     }
     return render(request, 'todo_list.html', context)
 
