@@ -3,8 +3,8 @@
 
 {% block content %}
 
-<p>Are you sure you want to delete "{{ rem.title }}"?</p>
-<form action="{% url 'todo_delete' rem.id %}" method="POST">
+<p>Are you sure you want to delete this Password?</p>
+<form action="{% url 'deletePassword' rem.id %}" method="POST">
     {% csrf_token %}
     <a class="btn btn-warning" href="{% url 'home' %}">Cancel</a>
     <input class="btn btn-danger" type="submit" name="Confirm" value="Confirm">

@@ -1,6 +1,6 @@
 import random
 import string
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Password
 from .forms import PasswordForm
 
@@ -22,3 +22,9 @@ def password_generator_view(request):
     return render(request, 'password_generator.html', {'form': form})
 
 
+def deletePassword(request, pk):
+    genpass = get_object_or_404(Password, pk=pk)
+    if request.method == 'POST':
+        Password.delete()
+        return redirect('todo_list')
+    return render(request, 'delete.html', {'rem': genpass})

@@ -76,11 +76,15 @@
                 <tr>
                     <th> ID </th>
                     <th>Password</th>
+                    <th>Purpose</th>
+                    <th> Delete </th>
                 </tr>
                 {% for pass in password %}
                     <tr>
                         <td> {{ pass.id }} </td>
                         <td> {{ pass }} </td>
+                        <td> {{ pass.purpose }} </td>
+                        <td><a class= "btn btn-sm btn-danger" href="{% url 'deletePassword' pass.id %}"> Delete </a></td>
                     </tr>
                 {% endfor %}
     </div>
