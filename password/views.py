@@ -14,8 +14,9 @@ def password_generator_view(request):
         form = PasswordForm(request.POST)
         if form.is_valid():
             length = form.cleaned_data['length']
+            purpose = form.cleaned_data['purpose']
             password = generate_password(length)
-            Password.objects.create(password=password)
+            Password.objects.create(password=password, purpose=purpose)
             return redirect('home')
     else:
         form = PasswordForm()
@@ -25,6 +26,6 @@ def password_generator_view(request):
 def deletePassword(request, pk):
     genpass = get_object_or_404(Password, pk=pk)
     if request.method == 'POST':
-        Password.delete()
+        genpass.delete()
         return redirect('home')
     return render(request, 'deletepassword.html', {'pass': genpass})
